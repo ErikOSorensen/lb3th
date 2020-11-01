@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.62.2" />
+
+
+<title>En test av rmarkdown post - lb3th - Erik Ø. Sørensen</title>
+<meta property="og:title" content="En test av rmarkdown post - lb3th - Erik Ø. Sørensen">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">En test av rmarkdown post</h1>
+
+    
+    <span class="article-date">2020-11-01</span>
+    
+
+    <div class="article-content">
+      
+<link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="index_files/anchor-sections/anchor-sections.js"></script>
+
+
+<p>Her kan jeg skrive på en test av rmarkdown.
+<span class="math display">\[y=x^2.\]</span>
+Jeg kan laste inn data:</p>
+<pre class="r"><code>df &lt;- tribble(
+  ~Rload, ~Vout_pp , 
+  0, 312,
+  50, 200,
+  100, 150,
+  1000, 100
+)</code></pre>
+<p>Og generere plot:</p>
+<pre class="r"><code>df %&gt;% ggplot(aes(x=Rload, y=Vout_pp)) +
+  geom_point() +
+  theme_minimal() + 
+  labs(x=&quot;Load (in Ohms)&quot;, y=&quot;Output voltage (pp) in mV&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.svg" width="576" /></p>
+<p>Kanskje klarer jeg også å få inn bilder.</p>
+<div class="figure">
+<img src="/2020-11-01-en-test-av-rmarkdown-post/index_files/2020-10-28%2018.38.11.jpg" width="800" alt="" />
+<p class="caption">Picture of first working version on the bench</p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+
