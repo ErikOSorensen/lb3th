@@ -18,7 +18,7 @@ library(tidyverse)
 I've been thinking about 10MHz to sync the time in the instruments, and also as a
 reference for on-air radio. A place to start is with a simple crystal oscillator, and
 I build the buffered version of a Colpitts oscillator, in the circuit 
-known as the G3UUR oscillator (taken from page 7.38 of "Experimental Methods in RF Design"):
+known as the G3UUR oscillator (taken from page 7.38 of [Experimental Methods in RF Design](https://www.amazon.com/Experimental-Methods-Design-ARRL-Inc/dp/087259923X):
 
 ![Schematic](/post/2020-11-01-10mhz-colpitts-oscillator/colpitts_page1.png)
 
