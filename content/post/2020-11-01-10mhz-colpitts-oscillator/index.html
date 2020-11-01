@@ -19,7 +19,7 @@ reference for on-air radio. A place to start is with a simple crystal oscillator
 I build the buffered version of a Colpitts oscillator, in the circuit
 known as the G3UUR oscillator (taken from page 7.38 of “Experimental Methods in RF Design”):</p>
 <div class="figure">
-<img src="/static/post/2020-11-01-10mhz-colpitts-oscillator/index_files/colpitts_page1.png" alt="" />
+<img src="/post/2020-11-01-10mhz-colpitts-oscillator/index_files/colpitts_page1.png" alt="" />
 <p class="caption">Schematic</p>
 </div>
 <p>I used a 10MHz crystal that came in a cheap ebay assortment kit.
@@ -27,7 +27,7 @@ The circuit oscillates at what appears, according to my HP53131a counter, at 9,9
 So slightly low - or perhaps my counter is off? Difficult to know without a reference
 (which will come later). For know, I just note that it oscillates at around 10MHz.</p>
 <div class="figure">
-<img src="/static/post/2020-11-01-10mhz-colpitts-oscillator/index_files/2020-10-28-colpitts.jpg" alt="" />
+<img src="/post/2020-11-01-10mhz-colpitts-oscillator/index_files/2020-10-28-colpitts.jpg" alt="" />
 <p class="caption">The oscillator on the bench.</p>
 </div>
 <p>Instead of trying to calculate what the output impedance of the circuit is, I use my
@@ -44,7 +44,7 @@ resistance <span class="math inline">\(R_O\)</span> (output impedance) in series
 I am measuring the output at a stage in a voltage divider formed by <span class="math inline">\(R_o\)</span> and my
 load resistor <span class="math inline">\(R_L\)</span>,
 <span class="math display">\[ V_L = \frac{R_L}{R_L+R_O} V_O.\]</span> So for two different loads <span class="math inline">\((R_L,R_L&#39;)\)</span>
-and measured voltages <span class="math inline">\((V_L, V_L&#39;)\)</span>, we get the ration
+and measured voltages <span class="math inline">\((V_L, V_L&#39;)\)</span>, we get the ratio
 <span class="math display">\[ \frac{V_L&#39;}{V_L} = \frac{R_L&#39;}{R_L+R_L&#39;} \frac{R_O + R_L}{R_L},\]</span>
 solving this and putting into a function, we have</p>
 <pre class="r"><code>output_impedance &lt;- function(v1,v2,r1,r2) {

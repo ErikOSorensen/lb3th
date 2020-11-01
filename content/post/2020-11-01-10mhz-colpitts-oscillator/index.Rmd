@@ -20,14 +20,14 @@ reference for on-air radio. A place to start is with a simple crystal oscillator
 I build the buffered version of a Colpitts oscillator, in the circuit 
 known as the G3UUR oscillator (taken from page 7.38 of "Experimental Methods in RF Design"):
 
-![Schematic](/static/post/2020-11-01-10mhz-colpitts-oscillator/index_files/colpitts_page1.png)
+![Schematic](/post/2020-11-01-10mhz-colpitts-oscillator/index_files/colpitts_page1.png)
 
 I used a 10MHz crystal that came in a cheap ebay assortment kit. 
 The circuit oscillates at what appears, according to my HP53131a counter, at 9,998,127 Hz.
 So slightly low - or perhaps my counter is off? Difficult to know without a reference 
 (which will come later). For know, I just note that it oscillates at around 10MHz.
 
-![The oscillator on the bench.](/static/post/2020-11-01-10mhz-colpitts-oscillator/index_files/2020-10-28-colpitts.jpg)
+![The oscillator on the bench.](/post/2020-11-01-10mhz-colpitts-oscillator/index_files/2020-10-28-colpitts.jpg)
 
 
 Instead of trying to calculate what the output impedance of the circuit is, I use my
@@ -61,7 +61,7 @@ resistance $R_O$ (output impedance) in series with the resistive load to ground.
 I am measuring the output at a stage in a voltage divider formed by $R_o$ and my
 load resistor $R_L$, 
 $$ V_L = \frac{R_L}{R_L+R_O} V_O.$$ So for two different loads $(R_L,R_L')$ 
-and measured voltages $(V_L, V_L')$, we get the ration
+and measured voltages $(V_L, V_L')$, we get the ratio
 $$ \frac{V_L'}{V_L} = \frac{R_L'}{R_L+R_L'} \frac{R_O + R_L}{R_L},$$
 solving this and putting into a function, we have
 ```{r}
