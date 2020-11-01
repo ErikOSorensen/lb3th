@@ -201,7 +201,11 @@ side of R4, so we should have the attenuator values
 
 This is sufficiently close to 150 and 36 which I have on hand (0.1dB off in attenuation, return loss 
 43 dB). I solder in the new parts and measure 700mV pp, 247 mV rms, which is `r format(700/2 / sqrt(2), digits=4)` 
-mV rms, or `r format( log10((700/2 /1000 / sqrt(2) )^2/50 / 0.001) * 10, digits=3)` dBm. So a bit off, 
+mV rms, or `r format( log10((700/2 /1000 / sqrt(2) )^2/50 / 0.001) * 10, digits=3)` dBm. 
+
+
+# Conclusion
+So a bit off, 
 but taking into account the tolerances and such, being less than a dB off I think is not so bad, a bit of trimming
 in the final build should be able to sort that out. This is the final schematic of today's test:
 

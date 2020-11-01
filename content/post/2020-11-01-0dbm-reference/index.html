@@ -22,6 +22,7 @@ tags:
 <li><a href="#the-rectification-circuit">The rectification circuit</a></li>
 <li><a href="#attenuation">Attenuation</a></li>
 </ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
 </ul>
 </div>
 
@@ -174,7 +175,12 @@ side of R4, so we should have the attenuator values</p>
 <pre><code>## [1] 36.01492</code></pre>
 <p>This is sufficiently close to 150 and 36 which I have on hand (0.1dB off in attenuation, return loss
 43 dB). I solder in the new parts and measure 700mV pp, 247 mV rms, which is 247.5
-mV rms, or 0.881 dBm. So a bit off,
+mV rms, or 0.881 dBm.</p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>So a bit off,
 but taking into account the tolerances and such, being less than a dB off I think is not so bad, a bit of trimming
 in the final build should be able to sort that out. This is the final schematic of today’s test:</p>
 <p><img src="/post/2020-11-01-0dbm-reference/0dBm-calibrator_v2.png" alt="Final schematic" />
@@ -185,5 +191,4 @@ I can make room for parallel resistors for each of the attenuator resistors.</p>
 <p>Unfortunately, the drive of the Colpitts oscillator I’ve prototyped is not sufficient to drive the
 levelling circuit. I would need a solid gain-block in between - perhaps a common emitter block with
 a voltage gain of 5-6 before the final emitter follower.</p>
-</div>
 </div>
