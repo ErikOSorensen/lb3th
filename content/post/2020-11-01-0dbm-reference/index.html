@@ -50,7 +50,10 @@ a modification to 10MHz, this is the version that I originally built [mistakes a
 </div>
 <p>The plan is that the Q1 won’t amplify unless there is positive bias at the gate,
 and this is controlled by the op-amp. Following Q1, there is a low pass filter (calculated
-using <a href="https://rf-tools.com/lc-filter/">rf-tools calculator</a>). This is rectified, and the op-amp
+using <a href="https://rf-tools.com/lc-filter/">rf-tools calculator</a>).
+The filter is necessary to guarantee a fairly pure tone, since we’ll be calibrating power
+based on voltage peak-to-peak readings.
+This is rectified, and the op-amp
 compares the peak of this filtered signal with the 5V reference (U1). If the rectified
 signal is smaller than 5V, U2 increases the bias at Q1’s gate, until there is 5V before the
 attenuator. The control-loop should be low impedance, I add a 50 ohm resistor. 5V peak
