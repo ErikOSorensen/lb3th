@@ -4,6 +4,7 @@ title: About
 ---
 
 This is the (experimental) electronics and radio lab notebook of Erik Ø. Sørensen (lb3th). 
+You can reach me at: sameos@gmail.com
 
 I'll try to keep this to document my own experimentation and to provide a bit of
 accountability - successes and failures should be documented and I should 
