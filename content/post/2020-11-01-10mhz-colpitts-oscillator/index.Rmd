@@ -20,14 +20,14 @@ reference for on-air radio. A place to start is with a simple crystal oscillator
 I build the buffered version of a Colpitts oscillator, in the circuit 
 known as the G3UUR oscillator (taken from page 7.38 of "Experimental Methods in RF Design"):
 
-![Schematic](/2020-11-01-10mhz-colpitts-oscillator/index_files/colpitts_page1.png)
+![Schematic](/static/post/2020-11-01-10mhz-colpitts-oscillator/index_files/colpitts_page1.png)
 
 I used a 10MHz crystal that came in a cheap ebay assortment kit. 
 The circuit oscillates at what appears, according to my HP53131a counter, at 9,998,127 Hz.
 So slightly low - or perhaps my counter is off? Difficult to know without a reference 
 (which will come later). For know, I just note that it oscillates at around 10MHz.
 
-![The oscillator on the bench.](/2020-11-01-10mhz-colpitts-oscillator/index_files/2020-10-28-colpitts.jpg)
+![The oscillator on the bench.](/static/post/2020-11-01-10mhz-colpitts-oscillator/index_files/2020-10-28-colpitts.jpg)
 
 
 Instead of trying to calculate what the output impedance of the circuit is, I use my
