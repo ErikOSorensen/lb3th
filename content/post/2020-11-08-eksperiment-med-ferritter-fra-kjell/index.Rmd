@@ -12,7 +12,7 @@ tags:
 I've bought some ferrites from "Kjell", a local electronics chain. 
 The ferrites I bought are the [largest clamp-on style ferrites they
 sell](https://www.kjell.com/no/produkter/data/datamaskinkomponenter/kontakter/ferrittblokk-12-mm-p90369). 
-I don't know the material they are made of. 
+I don't know what material they are made of. 
 
 
 ![Kjell's largest ferrite core](/post/2020-11-08-eksperiment-med-ferritter-fra-kjell/Kjell-core.jpg)
@@ -21,12 +21,14 @@ I don't know the material they are made of.
 I've run a simple experiment: Connecting my Rigol signal generator to my Rigol oscilloscope
 (terminated at 50 ohm), running either 1 or 7 turns through a ferrite core (7 turns 
 corresponds to the length of a stray wire on my bench). The improvised setup is probably not good above
-15 MHz, but these are my data on calculated impedance. 
+15 MHz (when the measures voltages get very low), but I'll present my first rought data in terms 
+of calculated impedance. 
 
 Since both the generator and the scope is terminated in 50 ohms, the measured voltage at the scope end
 should be 
 $$V_s = \frac{50}{50 + 50 + X_{f}} V_{g},$$
-with $X_{f}$ being the unknown impedance, 
+with $X_{f}$ being the unknown impedance, $V_g$ the voltage out of the generator and $V_s$ the
+voltage measured at the scope, and we have 
 $$X_f = \frac{V_g}{V_s}\cdot 50 - 100.$$
 I sent 1V rms out of the generator. 
 

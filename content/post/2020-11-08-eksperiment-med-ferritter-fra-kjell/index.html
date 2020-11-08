@@ -16,7 +16,7 @@ tags:
 <p>I’ve bought some ferrites from “Kjell”, a local electronics chain.
 The ferrites I bought are the <a href="https://www.kjell.com/no/produkter/data/datamaskinkomponenter/kontakter/ferrittblokk-12-mm-p90369">largest clamp-on style ferrites they
 sell</a>.
-I don’t know the material they are made of.</p>
+I don’t know what material they are made of.</p>
 <div class="figure">
 <img src="/post/2020-11-08-eksperiment-med-ferritter-fra-kjell/Kjell-core.jpg" alt="" />
 <p class="caption">Kjell’s largest ferrite core</p>
@@ -24,11 +24,13 @@ I don’t know the material they are made of.</p>
 <p>I’ve run a simple experiment: Connecting my Rigol signal generator to my Rigol oscilloscope
 (terminated at 50 ohm), running either 1 or 7 turns through a ferrite core (7 turns
 corresponds to the length of a stray wire on my bench). The improvised setup is probably not good above
-15 MHz, but these are my data on calculated impedance.</p>
+15 MHz (when the measures voltages get very low), but I’ll present my first rought data in terms
+of calculated impedance.</p>
 <p>Since both the generator and the scope is terminated in 50 ohms, the measured voltage at the scope end
 should be
 <span class="math display">\[V_s = \frac{50}{50 + 50 + X_{f}} V_{g},\]</span>
-with <span class="math inline">\(X_{f}\)</span> being the unknown impedance,
+with <span class="math inline">\(X_{f}\)</span> being the unknown impedance, <span class="math inline">\(V_g\)</span> the voltage out of the generator and <span class="math inline">\(V_s\)</span> the
+voltage measured at the scope, and we have
 <span class="math display">\[X_f = \frac{V_g}{V_s}\cdot 50 - 100.\]</span>
 I sent 1V rms out of the generator.</p>
 <p><img src="index_files/figure-html/unnamed-chunk-2-1.svg" width="576" /></p>
