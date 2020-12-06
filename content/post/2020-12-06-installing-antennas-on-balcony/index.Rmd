@@ -51,11 +51,11 @@ is approaching 20dB, measurements are very sensitive to the local environment. I
 just a tad more than 5 cm, corresponding to about 17.4 dB return loss (or a vswr of about 1.3:1) or better 
 across all of the 2m band.
 
-![nanoVNA after tuning antenna](/post/2020-12-06-installing-antennas-on-balcony/index_files/20201206_133139.jpg)
+![nanoVNA after tuning antenna](/post/2020-12-06-installing-antennas-on-balcony/20201206_133139.jpg)
 
 This is what the antenna look like pointing south from Landås: 
 
-![2m antenna pointing south](/post/2020-12-06-installing-antennas-on-balcony/index_files/20201206_133616.jpg)
+![2m antenna pointing south](/post/2020-12-06-installing-antennas-on-balcony/20201206_133616.jpg)
 
 And this is what the baby loop looks like, mounted on the same type of (temporary) speaker stand: 
 
