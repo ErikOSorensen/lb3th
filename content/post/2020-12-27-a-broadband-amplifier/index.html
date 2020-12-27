@@ -1,0 +1,77 @@
+---
+title: A broadband amplifier (step towards a logging power meter)
+author: Erik
+date: '2020-12-27'
+slug: a-broadband-amplifier
+categories: []
+tags: []
+---
+
+<link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="index_files/anchor-sections/anchor-sections.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#background">Background</a></li>
+<li><a href="#building-the-amplifier">Building the amplifier</a></li>
+<li><a href="#measurements">Measurements</a></li>
+</ul>
+</div>
+
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>I want to make a meter for my amateur radio station that can log transmitted power, swr, and the transmitted
+frequency to a file. For the detector, I’ll use a directional coupler with AD8307 log-amplifiers. I have
+submitted the gerber files from <a href="https://dj0abr.de/english/technik/dds/epwrswrV2.htm">DJ0ABR’s site</a> to
+<a href="https://jlcpcb.com/">JLCPCB</a>, this directional coupler makes the power measurement a matter of the reading
+the DC-voltage coming of the forward and reflected log amplifiers. For detecting the frequency of transmission,
+and Arduino can easily count the frequency to the accuracy that I need. But the microcontroller needs some
+pre-processing to read the frequency from the directional coupler.</p>
+<p>The frequency counting issue was addressed by Larry Phipps, N8LP, in his <a href="http://www.telepostinc.com/Files/phipps-1.pdf">2006 QEX paper on the LP100</a>.
+His solution is to amplify the forward measurement (by a lot), then limiting this, level shifting, and sending
+this straight into a microcontroller. If I am to to count using an Arduino, I also need to divide down the frequency
+before sending the TTL level signal to the Arduino, but this shouldn’t be a problem (with 74HC14 to square up the RF and an 74HC390 to divide
+the frequency down to something the Arduino can count). I figured I should run the frequency detect amplifier of N8LP for a test.</p>
+<p>The amplifier in question is a simple 3-transistor class A amplifier like this (with some value substitutions to reflect what I have on hand):</p>
+<p><img src="/post/2020-12-27-a-broadband-amplifier/bredband_crop_page1.png" /></p>
+</div>
+<div id="building-the-amplifier" class="section level1">
+<h1>Building the amplifier</h1>
+<p>I used this as an occasion to try out the construction technology I’ve seen
+<a href="https://youtu.be/qdc9N2Hags8">Thomas Knutsen, LA3PNA, use in a youtube video</a>.
+Using the cutter disc that I have for my Dremel, I ended up with this:</p>
+<div class="figure">
+<img src="/post/2020-12-27-a-broadband-amplifier/2020-12-27_18.22.44.jpg" alt="" />
+<p class="caption">Dremel-cut copper clad board</p>
+</div>
+<p>Esthetically, this is only a partial success. And since my Dremel cut-off wheel was fairly large (a diameter
+of 38mm), it was difficult to avoid overshooting the cuts. And for Q2 and Q3, the T-joint for the
+transistors have these overshoot where the collector is intended to go. This made it add some wires to
+the installation of these transistors, and the end result is not beautiful. But after some fiddling around,
+it seems to work in this fairly ugly state (with 0805 for the capacitors and resistors):</p>
+<div class="figure">
+<img src="/post/2020-12-27-a-broadband-amplifier/2020-12-27_20.07.31.jpg" alt="" />
+<p class="caption">Built up amplifier</p>
+</div>
+</div>
+<div id="measurements" class="section level1">
+<h1>Measurements</h1>
+<p>Hooking the amplifier up to 12V, it draws around 60mA. I used my HP8657A as a signal source and my Rigol 2072A
+oscilloscope
+to measure the output (with an 10:1 probe).</p>
+<p>The amplifier is fairly high impedance input and intended for a high impedance output.
+I used the oscilloscope as the load on the amplifier, and started with the signal generator set to a level of
+-60dBm at 1MHz. As expected, the gain of the amplifier dropped off with frequency; I re-adjusted the level out of the frequency generator as I adjusted the frequency from 1MHz to 30MHz. These are my measurements:</p>
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.svg" width="576" /></p>
+<p>The input impedance is high, and the load is also high impedance. To calculate
+the gain in terms of voltage alone, I take into account that the input is twice
+that of the indicated input power (since it is not divided by two in a 50-ohm termination).</p>
+<p>Adjusting for the increasing input power, I calculate the following gain based on the
+voltage input and outputs:</p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.svg" width="576" /></p>
+<p>The discontinuities at 10 and 20 MHz might be due to compression/distortion at those those levels.
+To conclude, the gain of the amplifier is severely decreasing in frequency.
+(This is a feature of the design not of weaknesses in my build, it is confirmed
+by simulations in LTSpice.) But the amplifier does provide about 43 dB at 30 MHz, sufficient to activate
+the frequency counter (?).</p>
+</div>
