@@ -1,5 +1,5 @@
 ---
-title: A broadband amplifier (step towards a logging power meter)
+title: A broadband (HF) amplifier, a step towards a logging power meter
 author: Erik
 date: '2020-12-27'
 slug: a-broadband-amplifier
