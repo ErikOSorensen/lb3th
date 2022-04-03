@@ -10,7 +10,9 @@ tags: []
 
 <div id="TOC">
 <ul>
-<li><a href="#design-considerations">Design considerations</a></li>
+<li><a href="#design-and-build">Design and build</a></li>
+<li><a href="#measurements">Measurements</a></li>
+<li><a href="#design-considerations-going-forward">Design considerations going forward</a></li>
 </ul>
 </div>
 
@@ -21,6 +23,8 @@ back I ordered a batch of PCBs for DJ0ABRs power meter
 <a href="https://youtu.be/hSHQAcMrIEk">U02 - Power / SWR measuring coupler</a>. It was
 designed to be part of his kilo-Watt amplifier. This seemed like a good
 idea at the time.</p>
+<div id="design-and-build" class="section level1">
+<h1>Design and build</h1>
 <p>The main design concept is to use a tandem match directional coupler,
 and then use highly sensitive AD8307 log amplifier to measure the forward
 and the reflected power.
@@ -46,18 +50,21 @@ port is 35 dB or more.</p>
 <img src="images/LRM_20220403_133731.jpg" width="600" alt="" />
 <p class="caption">Picture of coupler and VNA.</p>
 </div>
+</div>
+<div id="measurements" class="section level1">
+<h1>Measurements</h1>
 <p>For measurements, I used the TinySA spectrum analyzer. I put -10dBm into
 the transmitter port at 50MHz, varied the load impedance, and measured the power
 in the forward and the reflected port (taking care that the measurement
 port that wasn’t connected was terminated with 50 Ohm).</p>
 <p>Here are the measurements, Power is measured in dBm and the calculated
 return loss (RL) in dB:</p>
-<div id="gwvrnzgoks" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="sqklvnpulm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#gwvrnzgoks .gt_table {
+#sqklvnpulm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -82,7 +89,7 @@ return loss (RL) in dB:</p>
   border-left-color: #D3D3D3;
 }
 
-#gwvrnzgoks .gt_heading {
+#sqklvnpulm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -94,7 +101,7 @@ return loss (RL) in dB:</p>
   border-right-color: #D3D3D3;
 }
 
-#gwvrnzgoks .gt_title {
+#sqklvnpulm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -106,7 +113,7 @@ return loss (RL) in dB:</p>
   border-bottom-width: 0;
 }
 
-#gwvrnzgoks .gt_subtitle {
+#sqklvnpulm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -118,13 +125,13 @@ return loss (RL) in dB:</p>
   border-top-width: 0;
 }
 
-#gwvrnzgoks .gt_bottom_border {
+#sqklvnpulm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gwvrnzgoks .gt_col_headings {
+#sqklvnpulm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -139,7 +146,7 @@ return loss (RL) in dB:</p>
   border-right-color: #D3D3D3;
 }
 
-#gwvrnzgoks .gt_col_heading {
+#sqklvnpulm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -159,7 +166,7 @@ return loss (RL) in dB:</p>
   overflow-x: hidden;
 }
 
-#gwvrnzgoks .gt_column_spanner_outer {
+#sqklvnpulm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -171,15 +178,15 @@ return loss (RL) in dB:</p>
   padding-right: 4px;
 }
 
-#gwvrnzgoks .gt_column_spanner_outer:first-child {
+#sqklvnpulm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gwvrnzgoks .gt_column_spanner_outer:last-child {
+#sqklvnpulm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gwvrnzgoks .gt_column_spanner {
+#sqklvnpulm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -191,7 +198,7 @@ return loss (RL) in dB:</p>
   width: 100%;
 }
 
-#gwvrnzgoks .gt_group_heading {
+#sqklvnpulm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -216,7 +223,7 @@ return loss (RL) in dB:</p>
   vertical-align: middle;
 }
 
-#gwvrnzgoks .gt_empty_group_heading {
+#sqklvnpulm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -231,15 +238,15 @@ return loss (RL) in dB:</p>
   vertical-align: middle;
 }
 
-#gwvrnzgoks .gt_from_md > :first-child {
+#sqklvnpulm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gwvrnzgoks .gt_from_md > :last-child {
+#sqklvnpulm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gwvrnzgoks .gt_row {
+#sqklvnpulm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -258,7 +265,7 @@ return loss (RL) in dB:</p>
   overflow-x: hidden;
 }
 
-#gwvrnzgoks .gt_stub {
+#sqklvnpulm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -271,7 +278,7 @@ return loss (RL) in dB:</p>
   padding-right: 5px;
 }
 
-#gwvrnzgoks .gt_stub_row_group {
+#sqklvnpulm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -285,11 +292,11 @@ return loss (RL) in dB:</p>
   vertical-align: top;
 }
 
-#gwvrnzgoks .gt_row_group_first td {
+#sqklvnpulm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gwvrnzgoks .gt_summary_row {
+#sqklvnpulm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -299,16 +306,16 @@ return loss (RL) in dB:</p>
   padding-right: 5px;
 }
 
-#gwvrnzgoks .gt_first_summary_row {
+#sqklvnpulm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gwvrnzgoks .gt_first_summary_row.thick {
+#sqklvnpulm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gwvrnzgoks .gt_last_summary_row {
+#sqklvnpulm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -318,7 +325,7 @@ return loss (RL) in dB:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#gwvrnzgoks .gt_grand_summary_row {
+#sqklvnpulm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -328,7 +335,7 @@ return loss (RL) in dB:</p>
   padding-right: 5px;
 }
 
-#gwvrnzgoks .gt_first_grand_summary_row {
+#sqklvnpulm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -338,11 +345,11 @@ return loss (RL) in dB:</p>
   border-top-color: #D3D3D3;
 }
 
-#gwvrnzgoks .gt_striped {
+#sqklvnpulm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gwvrnzgoks .gt_table_body {
+#sqklvnpulm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -351,7 +358,7 @@ return loss (RL) in dB:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#gwvrnzgoks .gt_footnotes {
+#sqklvnpulm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -365,7 +372,7 @@ return loss (RL) in dB:</p>
   border-right-color: #D3D3D3;
 }
 
-#gwvrnzgoks .gt_footnote {
+#sqklvnpulm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -374,7 +381,7 @@ return loss (RL) in dB:</p>
   padding-right: 5px;
 }
 
-#gwvrnzgoks .gt_sourcenotes {
+#sqklvnpulm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -388,7 +395,7 @@ return loss (RL) in dB:</p>
   border-right-color: #D3D3D3;
 }
 
-#gwvrnzgoks .gt_sourcenote {
+#sqklvnpulm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -396,60 +403,60 @@ return loss (RL) in dB:</p>
   padding-right: 5px;
 }
 
-#gwvrnzgoks .gt_left {
+#sqklvnpulm .gt_left {
   text-align: left;
 }
 
-#gwvrnzgoks .gt_center {
+#sqklvnpulm .gt_center {
   text-align: center;
 }
 
-#gwvrnzgoks .gt_right {
+#sqklvnpulm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gwvrnzgoks .gt_font_normal {
+#sqklvnpulm .gt_font_normal {
   font-weight: normal;
 }
 
-#gwvrnzgoks .gt_font_bold {
+#sqklvnpulm .gt_font_bold {
   font-weight: bold;
 }
 
-#gwvrnzgoks .gt_font_italic {
+#sqklvnpulm .gt_font_italic {
   font-style: italic;
 }
 
-#gwvrnzgoks .gt_super {
+#sqklvnpulm .gt_super {
   font-size: 65%;
 }
 
-#gwvrnzgoks .gt_footnote_marks {
+#sqklvnpulm .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#gwvrnzgoks .gt_asterisk {
+#sqklvnpulm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gwvrnzgoks .gt_slash_mark {
+#sqklvnpulm .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#gwvrnzgoks .gt_fraction_numerator {
+#sqklvnpulm .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#gwvrnzgoks .gt_fraction_denominator {
+#sqklvnpulm .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -517,12 +524,12 @@ something to worry about.</li>
 </ol>
 <p>I also kept the input constant at -10 dBm and varied the frequency from 1 to
 90 MHz:</p>
-<div id="vtjfsteiue" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bhctseocfm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#vtjfsteiue .gt_table {
+#bhctseocfm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -547,7 +554,7 @@ something to worry about.</li>
   border-left-color: #D3D3D3;
 }
 
-#vtjfsteiue .gt_heading {
+#bhctseocfm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -559,7 +566,7 @@ something to worry about.</li>
   border-right-color: #D3D3D3;
 }
 
-#vtjfsteiue .gt_title {
+#bhctseocfm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -571,7 +578,7 @@ something to worry about.</li>
   border-bottom-width: 0;
 }
 
-#vtjfsteiue .gt_subtitle {
+#bhctseocfm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -583,13 +590,13 @@ something to worry about.</li>
   border-top-width: 0;
 }
 
-#vtjfsteiue .gt_bottom_border {
+#bhctseocfm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vtjfsteiue .gt_col_headings {
+#bhctseocfm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -604,7 +611,7 @@ something to worry about.</li>
   border-right-color: #D3D3D3;
 }
 
-#vtjfsteiue .gt_col_heading {
+#bhctseocfm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -624,7 +631,7 @@ something to worry about.</li>
   overflow-x: hidden;
 }
 
-#vtjfsteiue .gt_column_spanner_outer {
+#bhctseocfm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -636,15 +643,15 @@ something to worry about.</li>
   padding-right: 4px;
 }
 
-#vtjfsteiue .gt_column_spanner_outer:first-child {
+#bhctseocfm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vtjfsteiue .gt_column_spanner_outer:last-child {
+#bhctseocfm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vtjfsteiue .gt_column_spanner {
+#bhctseocfm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -656,7 +663,7 @@ something to worry about.</li>
   width: 100%;
 }
 
-#vtjfsteiue .gt_group_heading {
+#bhctseocfm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -681,7 +688,7 @@ something to worry about.</li>
   vertical-align: middle;
 }
 
-#vtjfsteiue .gt_empty_group_heading {
+#bhctseocfm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -696,15 +703,15 @@ something to worry about.</li>
   vertical-align: middle;
 }
 
-#vtjfsteiue .gt_from_md > :first-child {
+#bhctseocfm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vtjfsteiue .gt_from_md > :last-child {
+#bhctseocfm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vtjfsteiue .gt_row {
+#bhctseocfm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -723,7 +730,7 @@ something to worry about.</li>
   overflow-x: hidden;
 }
 
-#vtjfsteiue .gt_stub {
+#bhctseocfm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -736,7 +743,7 @@ something to worry about.</li>
   padding-right: 5px;
 }
 
-#vtjfsteiue .gt_stub_row_group {
+#bhctseocfm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -750,11 +757,11 @@ something to worry about.</li>
   vertical-align: top;
 }
 
-#vtjfsteiue .gt_row_group_first td {
+#bhctseocfm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vtjfsteiue .gt_summary_row {
+#bhctseocfm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -764,16 +771,16 @@ something to worry about.</li>
   padding-right: 5px;
 }
 
-#vtjfsteiue .gt_first_summary_row {
+#bhctseocfm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vtjfsteiue .gt_first_summary_row.thick {
+#bhctseocfm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vtjfsteiue .gt_last_summary_row {
+#bhctseocfm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -783,7 +790,7 @@ something to worry about.</li>
   border-bottom-color: #D3D3D3;
 }
 
-#vtjfsteiue .gt_grand_summary_row {
+#bhctseocfm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -793,7 +800,7 @@ something to worry about.</li>
   padding-right: 5px;
 }
 
-#vtjfsteiue .gt_first_grand_summary_row {
+#bhctseocfm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -803,11 +810,11 @@ something to worry about.</li>
   border-top-color: #D3D3D3;
 }
 
-#vtjfsteiue .gt_striped {
+#bhctseocfm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vtjfsteiue .gt_table_body {
+#bhctseocfm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -816,7 +823,7 @@ something to worry about.</li>
   border-bottom-color: #D3D3D3;
 }
 
-#vtjfsteiue .gt_footnotes {
+#bhctseocfm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -830,7 +837,7 @@ something to worry about.</li>
   border-right-color: #D3D3D3;
 }
 
-#vtjfsteiue .gt_footnote {
+#bhctseocfm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -839,7 +846,7 @@ something to worry about.</li>
   padding-right: 5px;
 }
 
-#vtjfsteiue .gt_sourcenotes {
+#bhctseocfm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -853,7 +860,7 @@ something to worry about.</li>
   border-right-color: #D3D3D3;
 }
 
-#vtjfsteiue .gt_sourcenote {
+#bhctseocfm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -861,60 +868,60 @@ something to worry about.</li>
   padding-right: 5px;
 }
 
-#vtjfsteiue .gt_left {
+#bhctseocfm .gt_left {
   text-align: left;
 }
 
-#vtjfsteiue .gt_center {
+#bhctseocfm .gt_center {
   text-align: center;
 }
 
-#vtjfsteiue .gt_right {
+#bhctseocfm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vtjfsteiue .gt_font_normal {
+#bhctseocfm .gt_font_normal {
   font-weight: normal;
 }
 
-#vtjfsteiue .gt_font_bold {
+#bhctseocfm .gt_font_bold {
   font-weight: bold;
 }
 
-#vtjfsteiue .gt_font_italic {
+#bhctseocfm .gt_font_italic {
   font-style: italic;
 }
 
-#vtjfsteiue .gt_super {
+#bhctseocfm .gt_super {
   font-size: 65%;
 }
 
-#vtjfsteiue .gt_footnote_marks {
+#bhctseocfm .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#vtjfsteiue .gt_asterisk {
+#bhctseocfm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vtjfsteiue .gt_slash_mark {
+#bhctseocfm .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#vtjfsteiue .gt_fraction_numerator {
+#bhctseocfm .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#vtjfsteiue .gt_fraction_denominator {
+#bhctseocfm .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1001,8 +1008,9 @@ something to worry about.</li>
 <p>Respecting the accuracy of the measurements, it seems that the the coupler
 behaves well up to 60-70 MHz, and the gross deviations from linearity only
 happens above 80 MHz. I am quite happy about this.</p>
-<div id="design-considerations" class="section level2">
-<h2>Design considerations</h2>
+</div>
+<div id="design-considerations-going-forward" class="section level1">
+<h1>Design considerations going forward</h1>
 <p>The important question is how turns should be wound on the transformers.
 DJ0ABR design with 24 turns, for a 2kW capacity. I have no planned need
 to measure that large amount of power, and there are two costs to having too

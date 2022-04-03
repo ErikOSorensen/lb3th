@@ -21,6 +21,8 @@ back I ordered a batch of PCBs for DJ0ABRs power meter
 designed to be part of his kilo-Watt amplifier. This seemed like a good 
 idea at the time. 
 
+# Design and build
+
 The main design concept is to use a tandem match directional coupler, 
 and then use highly sensitive AD8307 log amplifier to measure the forward
 and the reflected power. 
@@ -45,6 +47,7 @@ port is 35 dB or more.
 
 ![Picture of coupler and VNA.](images/LRM_20220403_133731.jpg){width=600px}
 
+# Measurements
 
 ```{r  include=FALSE}
 measurements_df <- tribble(
@@ -112,7 +115,7 @@ Respecting the accuracy of the measurements, it seems that the the coupler
 behaves well up to 60-70 MHz, and the gross deviations from linearity only
 happens above 80 MHz. I am quite happy about this. 
 
-## Design considerations 
+# Design considerations going forward 
 
 The important question is how turns should be wound on the transformers. 
 DJ0ABR design with 24 turns, for a 2kW capacity. I have no planned need
