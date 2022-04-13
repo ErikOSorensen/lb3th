@@ -1,0 +1,486 @@
+---
+title: RF sense
+author: Erik
+date: '2022-04-13'
+slug: rf-sense
+categories: []
+tags: []
+---
+
+
+
+<p>As part of another circuit I’m trying to design, I would like to have a
+high impedance detection of whether there is RF on the wire (this would
+be for a lab 10MHz distribution amp). I believe the following circuit
+should do:</p>
+<p><img src="images/rfsense.png" width="600" /></p>
+<p>After the 50-ohm load (for the experiment, not for the final design, just
+to terminate the signal generator in the testing), there are two
+Schottky diodes to rectify the signal, and then (R2,C3) filter the output
+into the comparator negative input. If we start from a low RF level state,
+the rectified RF is compared to a voltage of
+<span class="math inline">\(4.7/(4.7+47) \cdot 5V = 0.45V\)</span>. That corresponds to around 3 dBm.</p>
+<p>When the RF is lower, the positive input is higher, and the comparator
+lets its output go high, and there is no voltage to light the LED.
+But when the rectified RF goes above 3 dBm, the comparator opens
+the collector, and there is sufficient voltage to light the LED. Now
+R5 is also almost paralleled with R4, pulling the positive reference input
+towards ground (except for <span class="math inline">\(V_{CE}\)</span> of the output transistor of the comparator).
+That provides some hysteresis in the detection of RF by the LED.</p>
+<p>I built the circuit on one of the prototyping boards I had JLCPCB made from
+the Gerber files that
+<a href="https://miscdotgeek.com/a-new-prototyping-pcb-for-qrp-homebrew-radio/">Ryan Flower, W7RLF, have made available</a>:</p>
+<div class="figure">
+<img src="images/2022-04-13_rfsense_build_small.jpg" width="600" alt="" />
+<p class="caption">Picture of built prototype board.</p>
+</div>
+<p>All the diamond shapes on the board are connected to a ground plane on the back
+side of the board. The LM339 (the only comparator I had around in a DIP package)
+is superglued dead-bug style to the board. After fixing a bad solder joint,
+I could make the following measurements, using my HP signal generator for
+fine power adjustments:</p>
+<div id="gogszrnntj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#gogszrnntj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gogszrnntj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gogszrnntj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gogszrnntj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gogszrnntj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gogszrnntj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gogszrnntj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gogszrnntj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gogszrnntj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gogszrnntj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gogszrnntj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gogszrnntj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gogszrnntj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gogszrnntj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gogszrnntj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gogszrnntj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gogszrnntj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gogszrnntj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gogszrnntj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gogszrnntj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gogszrnntj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gogszrnntj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gogszrnntj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gogszrnntj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gogszrnntj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gogszrnntj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gogszrnntj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gogszrnntj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gogszrnntj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gogszrnntj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gogszrnntj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gogszrnntj .gt_left {
+  text-align: left;
+}
+
+#gogszrnntj .gt_center {
+  text-align: center;
+}
+
+#gogszrnntj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gogszrnntj .gt_font_normal {
+  font-weight: normal;
+}
+
+#gogszrnntj .gt_font_bold {
+  font-weight: bold;
+}
+
+#gogszrnntj .gt_font_italic {
+  font-style: italic;
+}
+
+#gogszrnntj .gt_super {
+  font-size: 65%;
+}
+
+#gogszrnntj .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#gogszrnntj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gogszrnntj .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#gogszrnntj .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#gogszrnntj .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Frequency (MHz)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Turn on (dBm)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Turn off (dBm)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">2.7</td></tr>
+    <tr><td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.0</td></tr>
+    <tr><td class="gt_row gt_right">10</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.0</td></tr>
+    <tr><td class="gt_row gt_right">20</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">3.1</td></tr>
+    <tr><td class="gt_row gt_right">30</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">3.8</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p>So this is more or less as the calculations implied, so this must count
+as some success. There seems to be some additional attenuation at higher
+frequencies, with higher power needed to turn the LED on.
+I measure the relevant voltages to see if my hypotheses were correct:</p>
+<ul>
+<li>When the RF on LED lights up, I measure 1.89V over the green LED (I should
+put a smaller resistance to get a bit more light from this). There are 3V over
+the resistor R6, and only 75 mV at the comparator output. The reference
+voltage at the +IN pin of the comparator measures 448 mV.</li>
+<li>When the RF on LED turns off, I measure 3.32V at the comparator output, and 477
+mV at +IN.</li>
+</ul>
