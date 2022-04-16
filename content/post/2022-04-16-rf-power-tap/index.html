@@ -1,0 +1,81 @@
+---
+title: RF power tap
+author: Erik
+date: '2022-04-16'
+slug: rf-power-tap
+categories: []
+tags: []
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#build">Build</a></li>
+<li><a href="#return-loss-at-input-port-s11">Return loss at input port (S11)</a></li>
+<li><a href="#attenuation-s21">Attenuation (S21)</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+
+<p>I have thought about what I need to do to monitor my own transmission on
+an oscilloscope - or possibly a spectrum analyzer; also it would be nice to
+have the possibility of measuring power without having to rely on a lot
+of my own circuitry working correctly. So I decided to build a resistive
+RF power tap. Wes Hayward, W7ZOI, and Bob Larkin, W7PUA, showed how to do
+this in their original paper on their AD8307 power meter (in QST, June 2001).</p>
+<div id="build" class="section level1">
+<h1>Build</h1>
+<p>Hayward and Larkin’s design is built into a die cast aluminium box with
+connectors on three sides. I used the same type of box (sourced from ebay),
+and put BNC connectors (with flanges) on. I have built a version aiming
+for 40 dB attenuation, as in this picture:</p>
+<div class="figure">
+<img src="images/LRM_20220416_155352.jpg" width="600" alt="" />
+<p class="caption">Picture of power tap</p>
+</div>
+<p>There are two weaknesses with this current version. First, the resistors
+cannot withstand a lot of power, so this is a proof of concept. If there
+are 100W in the through line, there will be almost 2W divided on the 3
+820 ohm resistors going down from the line. I should order some resistors
+that are more beefy. Second, I haven’t installed a metal plate as the through
+connection. Hayward and Larkin used a brass plate to connect through
+from the input to the output, which I guess would balance the inductance
+in the through connection with capacitive coupling to ground (they also used
+a short wire stub in parallel with the resistors). I tried fabricating
+such a plate out of a sardine tin, but I suspect that was made out of aluminium
+and it wouldn’t solder. I tried to make one out of scap pcb material, but
+that seemed very stiff and a mechanical problem without more support. So I decided
+to see how it would work with low power and without any attempt at high frequency
+compensation.</p>
+</div>
+<div id="return-loss-at-input-port-s11" class="section level1">
+<h1>Return loss at input port (S11)</h1>
+<p>I terminated the output and the sample tap in 50 ohm dummy loads, and put the
+nanoVNA on the input point. I used my fancy Mini-Circuit 50 ohm terminator on
+the output and calibrated the nanoVNA for a sweep 1-500 MHz.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.svg" width="576" /></p>
+<p>Examination of the Smith chart on the NanoVNA confirms that the all complex
+impedance is on the inductive side, indicating that it is the lack of capacitance
+in my build that is a problem at higher frequencies. Still, the return loss
+at 145 MHz is 19 dB, making it useful also at VHF. Hardware tweaking can perhaps
+make it acceptable also at the lower UHF frequencies. I’ll get back to it when
+I have received some beefier 820 ohm resistors for a permanent build.</p>
+</div>
+<div id="attenuation-s21" class="section level1">
+<h1>Attenuation (S21)</h1>
+<p>I reconfigured the testing setup: Kept the 50 ohm termination on the output,
+but connected the NanoVNA for a two port measurement - from the input port
+to the tap (the attenuated output). I recorded the</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.svg" width="576" /></p>
+<p>Attenuation is very close to the nominal 40dB.
+This curve looks dramatic, but considering the scale, attenuation is
+flat up to and including VHF, only drops off by a couple
+of dB at 500 MHz.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Fancy high frequency corrections would be nice, but is not strictly necessary
+for operation at the 144 MHz band and lower. Mouser sells 820 Ohm resistors, 2W for
+about 10kr a piece. I would need 3 of these - I have 50 Ohm terminating resistors,
+and this doesn’t have to drop as much power.</p>
+</div>
