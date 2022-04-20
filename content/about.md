@@ -7,14 +7,17 @@ This is the (experimental) electronics and radio lab notebook of Erik Ø. Søren
 You can reach me at: sameos@gmail.com
 
 I'll try to keep this to document my own experimentation and to provide a bit of
-accountability - successes and failures should be documented and I should 
+accountability - successes and failures should be documented, and I should 
 take enough measurements to characterize my work. R markdown (blogdown) should help 
 me integrate calculations and graphs with text and pictures. 
+I think of this as an online analog
+to the notebook I kept for physics experiments back in secondary school. 
 
-I've been an on-off electronics tinkerer since high school (when I worked both as
-a research assistant and in production at Cargoscan, now part of Mettler Toledo). I know
-that understanding something in theory and discovering what works or not in practice
-are two different things. The plan is to spend quite a bit of this notebook building
-and measuring circuits that are in some ways "trivial" and not directly useful, but I think
-this is necessary to gradually build up skills in building and characterizing more
-complicated (and useful) things as well.
+I've been an on-off electronics tinkerer since high school. I know
+that understanding something in theory while reading a text is different from
+the understanding that comes from building something and discovering what 
+works or doesn't work in practice. 
+The plan is to build and measure circuits that are in some ways "trivial" 
+and not directly useful, and that I sometimes *know* how should work.
+But I think this is necessary to gradually get used to building and characterizing more
+complicated (and useful) things as well. 
