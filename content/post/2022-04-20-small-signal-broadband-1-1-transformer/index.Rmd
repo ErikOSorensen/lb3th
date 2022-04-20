@@ -15,7 +15,8 @@ transformer-isolated outputs (a 10MHz reference distribution amplifier).
 But I really find working with enamel coated ("magnet") wire hard - stripping
 the enamel to solder to the wire is hard, and it is hard to keep track of
 which wire ends belong together. So I thought, I have a spool of single strand
-CAT-5 wire for installation, what if I used a twisted pair to wind the transformer?
+CAT-5 cable for installation, what if I used a twisted pair from this
+to wind the transformer?
 I probably couldn't get as many turns on to a small core, but I decided to try.
 I managed to put 6 turns onto a T37-43 core, and soldered it to a small
 stripboard fixture with SMA edge-mount connectors: 
@@ -65,7 +66,7 @@ mdf %>% pivot_longer(c(S11,S21), names_to = "S-parameter", values_to = "sparam")
 
 
 Looking at the graph, we see that from 3-4 MHz, the return loss is above 20 dB,
-and it stays below 15 dB until 50 MHz. The insertion loss is minimal throughout
+and it stays above 15 dB until 50 MHz. The insertion loss is minimal throughout
 the this range. For my use case, 10 MHz, I measure the return loss to be 22.2 dB,
 and the insertion loss to be 0.26 dB. This is not much worse than the 
 Mini-Circuits part I referenced above (which has other nice features).
