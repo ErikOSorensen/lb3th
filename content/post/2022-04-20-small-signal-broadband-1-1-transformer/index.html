@@ -1,0 +1,38 @@
+---
+title: Small-signal broadband 1:1 transformer
+author: Erik
+date: '2022-04-20'
+slug: small-signal-broadband-1-1-transformer
+categories: []
+tags: []
+---
+
+
+
+<p>I’ve been thinking about an application where I want to provide
+transformer-isolated outputs (a 10MHz reference distribution amplifier).
+But I really find working with enamel coated (“magnet”) wire hard - stripping
+the enamel to solder to the wire is hard, and it is hard to keep track of
+which wire ends belong together. So I thought, I have a spool of single strand
+CAT-5 wire for installation, what if I used a twisted pair to wind the transformer?
+I probably couldn’t get as many turns on to a small core, but I decided to try.
+I managed to put 6 turns onto a T37-43 core, and soldered it to a small
+stripboard fixture with SMA edge-mount connectors:</p>
+<div class="figure">
+<img src="images/LRM_20220420_221622_small1.jpg" width="600" alt="" />
+<p class="caption">Transformer in test fixture.</p>
+</div>
+<p>This is not the prettiest of transformers, and it is large compared to what
+is commercially available (such as the <a href="https://www.minicircuits.com/pdfs/ADT1-1+.pdf">Mini-Circuits ADT1-1+</a>).</p>
+<p>I used to nanoVNA to measure the return loss and the attenuation of this transformer
+over 1 to 100 MHz (but I’m most interested in what happens around 10MHz).</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.svg" width="576" /></p>
+<p>Looking at the graph, we see that from 3-4 MHz, the return loss is above 20 dB,
+and it stays below 15 dB until 50 MHz. The insertion loss is minimal throughout
+the this range. For my use case, 10 MHz, I measure the return loss to be 22.2 dB,
+and the insertion loss to be 0.26 dB. This is not much worse than the
+Mini-Circuits part I referenced above (which has other nice features).</p>
+<p>I conclude that transformers of this type, even with only 6 turns,
+will work just fine for the output of a 10 MHz distribution amplifier. Note to
+self: I really should get the serial interface to the nanoVNA working such
+that I don’t have to punch the numbers myself.</p>
