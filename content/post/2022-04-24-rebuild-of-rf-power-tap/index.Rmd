@@ -74,7 +74,7 @@ df_thru %>% filter(parameter %in% c("S11","S21")) %>%
 Similarly, I have another set of measurement, with the VNA from
 input to the attenuated tap (and 50 ohm termination of output).
 
-```{r}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 df_pad %>% filter(parameter %in% c("S11","S21")) %>%
   ggplot(aes(y=db, x = frequency, color = parameter)) + 
   geom_line() +

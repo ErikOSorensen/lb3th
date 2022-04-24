@@ -74,14 +74,6 @@ connection:</p>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.svg" width="576" /></p>
 <p>Similarly, I have another set of measurement, with the VNA from
 input to the attenuated tap (and 50 ohm termination of output).</p>
-<pre class="r"><code>df_pad %&gt;% filter(parameter %in% c(&quot;S11&quot;,&quot;S21&quot;)) %&gt;%
-  ggplot(aes(y=db, x = frequency, color = parameter)) + 
-  geom_line() +
-  theme_minimal() +
-  labs( x = &quot;Frequency [MHz]&quot;,
-        y = &quot;S-parameter [dB]&quot;,
-        title = &quot;VNA across input and attenuator output&quot;) +
-  theme(plot.title.position = &quot;plot&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.svg" width="576" /></p>
 <p>In theory, it should also be possible to plot these data on a Smith chart,
 there is a <code>geom_smith</code> extension to ggplot.
