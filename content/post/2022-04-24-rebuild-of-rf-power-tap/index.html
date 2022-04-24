@@ -1,0 +1,101 @@
+---
+title: Rebuild of RF power tap
+author: Erik
+date: '2022-04-24'
+slug: rebuild-of-rf-power-tap
+categories: []
+tags: []
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#build">Build</a></li>
+<li><a href="#measuring-with-nanovna-saver">Measuring with NanoVNA Saver</a></li>
+<li><a href="#attempts-to-load-nanovna-touchstone-files-into-r">Attempts to load NanoVNA touchstone files into R</a></li>
+</ul>
+</div>
+
+<p>Last week I built a 40 dB tap as a proof of concept, but
+two things held me back from declaring a full success:</p>
+<ol style="list-style-type: decimal">
+<li>I didn’t have metal film resistors that could take the full power of a
+100W transmitter.</li>
+<li>The plate-capacitor through coupling didn’t seem very sturdy, and I made
+a through connection with a straight wire that was a tad bit on the inductive
+side.</li>
+</ol>
+<div id="build" class="section level1">
+<h1>Build</h1>
+<p>Now I have received 2W metal film resistors from Mouser, and I have built the
+plate capacitor solution with a piece of circuit board material that is held
+in place with nylon bolts. This is mechanically quite secure:</p>
+<div class="figure">
+<img src="images/LRM_20220424_181713_small.jpg" alt="" />
+<p class="caption">Picture of inside of tap</p>
+</div>
+</div>
+<div id="measuring-with-nanovna-saver" class="section level1">
+<h1>Measuring with NanoVNA Saver</h1>
+<p>I figured out how to connect the nanoVNA to the computer with <a href="https://github.com/NanoVNA-Saver/nanovna-saver">NanoVNA Saver</a>. This allows me to
+either save a screenshot of what I saw while watchin the tiny screen when
+I adjusted the length of the small wire capacitor that is parallel to the
+power resistors:</p>
+<div class="figure">
+<img src="images/VNA_screenshot.png" alt="" />
+<p class="caption">NanoVNA screenshot</p>
+</div>
+<p>This shows that the power tap works quite well from 1 to 500 MHz, minimum
+return loss is almost 21 dB, at 440 MHz. The through insertion loss is very small.</p>
+</div>
+<div id="attempts-to-load-nanovna-touchstone-files-into-r" class="section level1">
+<h1>Attempts to load NanoVNA touchstone files into R</h1>
+<p>There is a package by Aaron Anderson, <a href="https://github.com/aaronmanderson3/rftk">rftk: RF Toolkit</a> that supposedly can read
+touchstone files, do RF calculations and display data using ggplot.</p>
+<pre class="r"><code>library(tidyverse)
+library(rftk)</code></pre>
+<p>Now, it should be possible to read the touchstone files saved by NanoVNA saver:</p>
+<pre class="r"><code>df_thru &lt;- read_snp(&quot;40dB_pad.s2p&quot;)
+df_pad &lt;- read_snp(&quot;40dB_pad_attenuation.s2p&quot;)</code></pre>
+<p>We can take a look at the content of one of these files:</p>
+<pre class="r"><code>head(df_thru)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   parameter frequency        db     ang
+##   &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 S11         1000000  -35.5    177.   
+## 2 S21         1000000   -0.0802  -0.204
+## 3 S12         1000000 -Inf        0    
+## 4 S22         1000000 -Inf        0    
+## 5 S11         5990000  -36.1    171.   
+## 6 S21         5990000   -0.0834  -1.15</code></pre>
+<p>The S12 and S22 parameters are not available in from the Nano VNA.</p>
+<p>So we can now plot the return loss and insertion loss of a through
+connection:</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.svg" width="576" /></p>
+<p>Similarly, I have another set of measurement, with the VNA from
+input to the attenuated tap (and 50 ohm termination of output).</p>
+<pre class="r"><code>df_pad %&gt;% filter(parameter %in% c(&quot;S11&quot;,&quot;S21&quot;)) %&gt;%
+  ggplot(aes(y=db, x = frequency, color = parameter)) + 
+  geom_line() +
+  theme_minimal() +
+  labs( x = &quot;Frequency [MHz]&quot;,
+        y = &quot;S-parameter [dB]&quot;,
+        title = &quot;VNA across input and attenuator output&quot;) +
+  theme(plot.title.position = &quot;plot&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.svg" width="576" /></p>
+<p>In theory, it should also be possible to plot these data on a Smith chart,
+there is a <code>geom_smith</code> extension to ggplot.
+The required aesthetics to the <code>geom_smith</code> are <code>freq</code>, <code>smag</code>, and <code>sang</code>.
+Frequency must be in Hz. From the example in the help, it is clear that <code>sang</code>
+is angle in radians (whereas the file was read with angles in degrees).
+I suspect that the <code>smag</code> might be the magnitude of the
+reflection coefficient, in which case <span class="math display">\[|\Gamma| = 10^{S_{11}/20},\]</span>
+with <span class="math inline">\(|\Gamma|\)</span> being the magnitude of the reflection coefficient.
+Let’s try to put that into the Smith chart command.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.svg" width="576" /></p>
+<p>And for the attenuation output:</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.svg" width="576" /></p>
+<p>I suspect that there are commands in <code>rftk</code> to do the conversion between
+S-parameters and reflection coefficient, but it seems as if the documentation
+is still not finished.</p>
+</div>
