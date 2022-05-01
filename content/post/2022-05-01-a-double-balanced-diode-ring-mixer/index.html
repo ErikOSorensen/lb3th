@@ -20,8 +20,8 @@ Second, a large drive level would be necessary to turn two 1n4148 diodes on
 at the same time.</p>
 <p>The second time I wound the two transformers with 8 turns of trifilar wire
 on FT50-43 cores (I aimed for 10, but could only fit 8 turns of the insulated
-wire I used). I used 1n5711 Schottky diodes. These were my last 1n5711s, I need
-to order more, so matching these was not a possibility.
+wire I used). I used 1n5711 Schottky diodes. These were my last 1n5711s
+so matching these was not a possibility (I need to order more).
 The build is not beautiful:</p>
 <p><img src="images/mixer_small.jpg" width="600" /></p>
 <p>I decided to make some measurement mixing 5 MHz to 9 MHz with a 14 MHz
@@ -32,15 +32,19 @@ I tried a couple of different levels of RF and LO drive, and recorded the
 magnitudes of the two mixing products (and the RF and LO) on the IF port.
 All measurements were made with the Tiny SA at the IF port.</p>
 <p>The main mixing products depend on the RF level, but not so much on the
-drive levels that I’ve been looking at:
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.svg" width="576" />
-For both of these mixing products there is an insertion loss of between
-4 and 5 dB, which is not great.</p>
+drive levels that I’ve been looking at:</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.svg" width="576" /></p>
+<p>For both of these mixing products there is an conversion loss of between
+4 and 5 dB. I don’t know how good or bad that is, but I note that Mini Circuits’
+<a href="https://www.minicircuits.com/WebStore/dashboard.html?model=ADE-1%2B">ADE-1+</a>, also
+a double balanced diode ring mixer, is marketed as having a low
+conversion loss at 5.0 dB.</p>
 <p>For the suppression of the RF input and the local oscillator,
-we have:
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.svg" width="576" />
-We see that there is 40 dB suppression of the RF input, and more than 50 dB
-suppression of the local oscillator.
+we have:</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.svg" width="576" /></p>
+<p>We see that there is 40 dB suppression of the RF input, and more than 50 dB
+suppression of the local oscillator. This is a bit worse, but not drastically
+much worse, than the Mini Circuits part referenced above.
 Given that performance with respect to the mixing products didn’t depend
-a lot on the drive level, it seems unnecessary to run such a mixer at levels
+a lot on the drive level, it seems unnecessary to run this mixer at levels
 higher than 4 dBm.</p>
