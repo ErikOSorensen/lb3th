@@ -1,0 +1,25 @@
+---
+title: A double balanced diode ring mixer
+author: Erik
+date: '2022-05-01'
+slug: a-double-balanced-diode-ring-mixer
+categories: []
+tags: []
+---
+
+
+
+<p>I decided to build a diode ring (double) balanced mixer. The
+design of these is fairly straight forward:</p>
+<p><img src="images/mixer.png" width="600" /></p>
+<p>I built it twice. The first time I wound the transformers on T50-6 cores and
+used 1n4148 diodes. This didn’t work very well. I concluded after
+a while that there were two issues working against it: First, the inductive
+reactance in parallel with the load would be low, loading down the generators.
+Second, a large drive level would be necessary to turn two 1n4148 diodes on
+at the same time.</p>
+<p>The second time I wound the two transformers with 8 turns of trifilar wire
+on FT50-43 cores (I aimed for 10, but could only fit 8 turns of the insulated
+wire I used). I used 1n5711 Schottky diodes. These were my last 1n5711s, I need
+to order more, so matching these was not a possibility.
+The build is not beautiful, but it seemed to work:</p>
