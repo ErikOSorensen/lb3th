@@ -27,6 +27,7 @@ The build is not beautiful:
 
 ![](images/mixer_small.jpg){width=600px}
 
+
 I decided to make some measurement mixing 5 MHz to 9 MHz with a 14 MHz
 local oscillator. This would give 5 and 14 should give mixing products
 at 9 and 19 MHz. I used my HP signal generator to provide the 5 MHz
