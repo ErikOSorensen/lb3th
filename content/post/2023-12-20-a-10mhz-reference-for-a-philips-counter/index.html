@@ -1,0 +1,52 @@
+---
+title: A 10MHz reference for a Philips counter
+author: ''
+date: '2023-12-20'
+slug: a-10mhz-reference-for-a-philips-counter
+categories: []
+tags: []
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#current-drawn" id="toc-current-drawn">Current drawn</a></li>
+<li><a href="#frequency-vs-control-voltage" id="toc-frequency-vs-control-voltage">Frequency vs control voltage</a></li>
+<li><a href="#amplitude" id="toc-amplitude">Amplitude</a></li>
+</ul>
+</div>
+
+<p>See (<a href="https://github.com/ErikOSorensen/PM66xx-frequency-reference/tree/main" class="uri">https://github.com/ErikOSorensen/PM66xx-frequency-reference/tree/main</a>) for the design.</p>
+<div class="float">
+<img src="images/LRM_20231221_000118.jpg" width="800" alt="The built up board" />
+<div class="figcaption">The built up board</div>
+</div>
+<div id="current-drawn" class="section level1">
+<h1>Current drawn</h1>
+<p>From an ambient temperature, I measured how much current the oscillator
+drew from the power supply in the first minutes (at 5V). I measured
+the current draw every 10th second.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.svg" width="576" /></p>
+<p>Very slowly, the current draw continued to drop, at 22:20 the current drwan was 236 mA.</p>
+</div>
+<div id="frequency-vs-control-voltage" class="section level1">
+<h1>Frequency vs control voltage</h1>
+<p>If the frequency generated cannot be controlled in a proper window around 10MHz,
+the oscillator might be too old and for use. I measured the frequency
+generated for some control voltages, and this doesn’t seem like a problem.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.svg" width="576" /></p>
+<p>The frequency was measure by my Agilent 53131A with a GPSDO reference,
+with a 1s gate time. This seems fairly linear, with about
+3.8025
+Hz/V. The potentiometer on the board has 4.096 V over 23 turns, so this will
+give about 0.6771757 Hz/turn which should make it possible to
+calibrate it fairly precisely.</p>
+</div>
+<div id="amplitude" class="section level1">
+<h1>Amplitude</h1>
+<p>Running freely, without a load, I measured 2.3V peak-to-peak. With the filtration
+and the 50 Ohm on-board load resistor that I have adopted from previous designs I measure
+around 1V peak-to-peak, which is more or less in line with a 50 Ohm internal
+impedance of the oscillator, and a small insertion loss of the low pass filter
+I added.</p>
+</div>
