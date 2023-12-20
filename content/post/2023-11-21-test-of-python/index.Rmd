@@ -1,0 +1,18 @@
+---
+title: Test of Python
+author: Erik Ø. Sørensen
+date: '2023-11-21'
+slug: test-of-python
+categories: []
+tags: []
+---
+
+```{python}
+import math
+import pyvisa
+rm = pyvisa.ResourceManager()
+rm.list_resources("*")
+```
+
+ 
+Er det ikke noe output til markdown?
