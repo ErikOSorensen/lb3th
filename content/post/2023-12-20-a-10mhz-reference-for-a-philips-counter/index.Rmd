@@ -11,6 +11,7 @@ tags: []
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(scales)
 ```
 
 See (https://github.com/ErikOSorensen/PM66xx-frequency-reference/tree/main) for the design.
