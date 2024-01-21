@@ -23,7 +23,13 @@ for which I now have an untested PCB.
 
 I have the Digilent Analog discovery connected by USB and the "Impedance
 Analyzer" adapter. The components are soldered to small adapters with
-short leads soldered to fit into the analyzer adapter.
+short leads soldered to fit into the analyzer adapter.f
+
+![Test fixture for smd capacitors and inductors](images/LRM_20240121_124558.jpg){width=800px}
+
+
+![Test fixture in the Analog Discovery with the impedance analyzer](images/LRM_20240121_124649.jpg){width=800px}
+
 
 # 4 capacitors
 
