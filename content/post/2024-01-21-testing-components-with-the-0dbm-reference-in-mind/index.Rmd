@@ -1,0 +1,190 @@
+---
+title: Testing components (with the 0dBm reference in mind)
+author: ''
+date: '2024-01-21'
+slug: testing-components-with-the-0dbm-reference-in-mind
+categories: []
+tags: []
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(here)
+library(janitor)
+library(scales)
+library(gt)
+```
+
+I am testing some components that I plan to put into the 0dBm reference
+for which I now have an untested PCB.
+
+I have the Digilent Analog discovery connected by USB and the "Impedance
+Analyzer" adapter. The components are soldered to small adapters with
+short leads soldered to fit into the analyzer adapter.
+
+# 4 capacitors
+
+For DC-blocking in the 0dBm 10MHz reference, I have designed with 100nF
+capacitors (because I have a lot of them). But the quality of capacitors
+this large is not the same that you can get at lower capacitances, my
+capacitors at 100nF are either X7R or Y5-something (from a parts-kit).
+So my capacitors are (all 100nF):
+
+-   C1: Samsung
+    [CL21B104KBNE](https://no.mouser.com/datasheet/2/585/MLCC-1837944.pdf),
+    X7R, +/- 10%, 50V, 0805
+-   C2: From an AIDETEK kit, X7R, +/- 10%, 50V, 0805
+-   C3: From an AIDETEK kit, Y5?, +/- 20%, 50V, 0805
+-   C4: Wurth,
+    [885012207098](https://datasheet.octopart.com/885012207098-W%C3%BCrth-Elektronik-datasheet-155502646.pdf),
+    X7R, +/- 10%, 50V, 0805
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+C1df <- read_csv(here("content", "post",
+                      "2024-01-21-testing-components-with-the-0dbm-reference-in-mind",
+                      "C1_100_compensated.csv"), 
+                 comment = "#") |> 
+  janitor::clean_names() |>
+  mutate(part = "C1")
+C2df <- read_csv(here("content", "post",
+                      "2024-01-21-testing-components-with-the-0dbm-reference-in-mind",
+                      "C2_100_compensated.csv"), 
+                 comment = "#")  |> 
+  janitor::clean_names() |>
+  mutate(part = "C2")
+C3df <- read_csv(here("content", "post",
+                      "2024-01-21-testing-components-with-the-0dbm-reference-in-mind",
+                      "C3_100_compensated.csv"), 
+                 comment = "#")  |> 
+  janitor::clean_names() |>
+  mutate(part = "C3")
+C4df <- read_csv(here("content", "post",
+                      "2024-01-21-testing-components-with-the-0dbm-reference-in-mind",
+                      "C4_100_compensated.csv"), 
+                 comment = "#")  |> 
+  janitor::clean_names() |>
+  mutate(part = "C4")
+Cdf <- bind_rows(list(C1df, C2df, C3df, C4df)) |> 
+  mutate(impedance = sqrt(real_ohm^2 + imag_ohm^2))
+```
+
+I graph the impedance of the different parts
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+Cdf |> 
+  ggplot(aes(x=frequency_hz, y=impedance, color=part)) +
+  geom_line() +
+    theme_minimal() +
+    labs(x = "Frequency [Hz]",
+         y = "Impedance [Ohm]",
+         title = "4 capacitors",
+         color = "Part:") +
+  theme(plot.title.position = "plot") +
+  scale_x_continuous(trans = "log10", labels = scales::comma) +
+  scale_y_continuous(trans = "log10", labels = scales::comma)
+```
+
+The resonances (lowest impedance) are at:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+Cdf |> group_by(part) |>
+  filter(impedance == min(impedance)) |>
+  select(c("frequency_hz","impedance")) |> 
+  ungroup() |> 
+  select(c("part","frequency_hz","impedance")) |>
+  gt()
+```
+
+So the Aidetek parts are clearly not as good. That the Y5 capacitor is
+worse is no surprise, but the X7R are also worse than the Wurth and Samsung parts.
+But for DC-blocking, they all seem ok. Here are the impedances at about 10MHz:
+
+```{r echo=FALSE}
+Cdf |> group_by(part) |>
+  filter(frequency_hz > 10e6) |>
+  filter(frequency_hz == min(frequency_hz)) |>
+  ungroup() |>
+  arrange(part) |>
+  select(c("part","impedance")) |>
+  gt()
+```
+
+
+# 3 Inductors
+
+The low pass filter is a 7-th order Chebyshev filter intended to sit at 10.5MHz,
+and it relies on 1uH inductors. I have three different candidates:
+
+- L1: Kemet [L0805C1R0KSMST](https://connect.kemet.com:7667/gateway/IntelliData-ComponentDocumentation/1.0/download/specsheet/L0805C1R0KSMST), Shielded, Surface Mount Inductor, Ceramic Multilayer (0805).
+- L2: TDK [MLZ2012A1R0WT000](https://datasheet.octopart.com/MLZ2012A1R0WT000-TDK-datasheet-155380168.pdf), Multilayer Ferrite  (0805).
+- L3: A 1uH from an ebay sample book (0805).
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+L1df <- read_csv(here("content", "post",
+                      "2024-01-21-testing-components-with-the-0dbm-reference-in-mind",
+                      "L1_100_compensated.csv"), 
+                 comment = "#") |> 
+  janitor::clean_names() |>
+  mutate(part = "L1")
+L2df <- read_csv(here("content", "post",
+                      "2024-01-21-testing-components-with-the-0dbm-reference-in-mind",
+                      "L2_100_compensated.csv"), 
+                 comment = "#") |> 
+  janitor::clean_names() |>
+  mutate(part = "L2")
+L3df <- read_csv(here("content", "post",
+                      "2024-01-21-testing-components-with-the-0dbm-reference-in-mind",
+                      "L3_100_compensated.csv"), 
+                 comment = "#") |> 
+  janitor::clean_names() |>
+  mutate(part = "L3")
+Ldf <- bind_rows(list(L1df, L2df, L3df)) |> 
+  mutate(impedance = sqrt(real_ohm^2 + imag_ohm^2))
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+Ldf |> 
+  ggplot(aes(x=frequency_hz, y=impedance, color=part)) +
+  geom_line() +
+    theme_minimal() +
+    labs(x = "Frequency [Hz]",
+         y = "Impedance [Ohm]",
+         title = "3 Inductors",
+         color = "Part:") +
+  theme(plot.title.position = "plot") +
+  scale_x_continuous(trans = "log10", labels = scales::comma) +
+  scale_y_continuous(trans = "log10", labels = scales::comma)
+```
+
+Looking more closely at the values at higher frequencies, let's 
+look at the **differences** in impedance from an ideal inductor (which has
+$X_L = 2\pi f L$).
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+Ldf |> mutate(Z_ideal = 2*pi*frequency_hz * 1e-6,
+              Z_difference = impedance - Z_ideal,
+              Z_d_fraction = (Z_difference / Z_ideal)*100) |>
+  filter(frequency_hz > 5e6) |>
+  ggplot(aes(x = frequency_hz, y = Z_d_fraction, color=part)) +
+  geom_line() +
+  theme_minimal() + 
+  theme(plot.title.position = "plot") +
+  scale_x_continuous(trans = "log10", labels = scales::comma) +
+  labs(x = "Frequency [Hz]",
+       y = "Difference from ideal inductor [%]",
+       title = "Errors at higher frequencies",
+       color = "Part:")
+  
+```
+
+Here it is clear that there is a difference between the parts. The Kemet
+inductor (L1) is much better into the tens of MHz. The L2 (TDK) is made
+more to work as a Ferrite bead on power lines and such, and it is 
+perhaps not so bad. The 1uH from the ebay sample book (L3) does not 
+look as good.
+
