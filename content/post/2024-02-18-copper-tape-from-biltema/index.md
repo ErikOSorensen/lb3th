@@ -22,12 +22,12 @@ a roll to experiment (89 kr/roll).
 The Biltema copper tape [(article no. 29-2506)](https://www.biltema.no/fritid/hage/planting/plantekasser-og-tilbehor/kobbertape-2000039666) is 40mm wide and comes in a roll of 5m. 
 I cut a 20 cm strip and measured 4.3 mOhm using  Kelvin connections. 
 
-![Measuring resistance of a 20cm strip of copper tape](images/2024-02-18 13.58.01.jpg)
+![Measuring resistance of a 20cm strip of copper tape](images/2024-02-18-13.58.01.jpg)
 
 I then cut the 20cm strip into two strips of 10cm, and pasted them on top of each other (with 9 cm overlap). I measured the resistance 
 between the top and the bottom strip to be 94 mOhm.
 
-![Measuring two 10cm strips with 9 cm overlap](images/2024-02-18 14.00.33.jpg).
+![Measuring two 10cm strips with 9 cm overlap](images/2024-02-18-14.00.33.jpg).
 
 
 I conclude that the adhesive on the copper tape is sufficently conductive for 
